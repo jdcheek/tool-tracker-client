@@ -14,9 +14,12 @@ const Navigation = (props) => {
 
   const userAuth = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/auth/status", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://infinite-stream-86590.herokuapp.com/auth/status",
+        {
+          withCredentials: true,
+        }
+      );
       if (mountedRef.current) {
         if (res.data) {
           setCurrentUser(res.data);
@@ -42,9 +45,12 @@ const Navigation = (props) => {
   const logOut = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.get("http://localhost:5000/auth/logout", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://infinite-stream-86590.herokuapp.com/auth/logout",
+        {
+          withCredentials: true,
+        }
+      );
       setCurrentUser({ isLoggedIn: false, isAdmin: false, username: null });
       history.push("/login");
       return res;

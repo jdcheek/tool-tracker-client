@@ -19,9 +19,13 @@ export default function CreateInventory() {
 
   const addNewItem = async () => {
     try {
-      const res = axios.post("http://localhost:5000/inventory/add", item, {
-        withCredentials: true,
-      });
+      const res = axios.post(
+        "https://infinite-stream-86590.herokuapp.com/inventory/add",
+        item,
+        {
+          withCredentials: true,
+        }
+      );
       console.log(res);
     } catch (err) {
       console.log(`Add new item error: ${err}`);
@@ -50,36 +54,36 @@ export default function CreateInventory() {
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="tool_number">Tool Number</label>
+        <div className='form-group'>
+          <label htmlFor='tool_number'>Tool Number</label>
           <input
-            type="text"
+            type='text'
             required
-            className="form-control"
+            className='form-control'
             value={item.tool_number}
             onChange={(e) => {
               setItem({ ...item, tool_number: e.target.value.toUpperCase() });
             }}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="description">Description</label>
+        <div className='form-group'>
+          <label htmlFor='description'>Description</label>
           <input
-            type="text"
-            className="form-control"
+            type='text'
+            className='form-control'
             value={item.description}
             onChange={(e) => {
               setItem({ ...item, description: e.target.value });
             }}
           />
-          <div className="form-group">
-            <label htmlFor="location">Shelf Number</label>
+          <div className='form-group'>
+            <label htmlFor='location'>Shelf Number</label>
             <input
-              type="number"
-              min="1"
-              max="30"
+              type='number'
+              min='1'
+              max='30'
               required
-              className="form-control"
+              className='form-control'
               value={item.location.shelf}
               onChange={(e) => {
                 setItem({
@@ -89,12 +93,12 @@ export default function CreateInventory() {
               }}
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="location">Bin Letter</label>
+          <div className='form-group'>
+            <label htmlFor='location'>Bin Letter</label>
             <input
-              type="text"
+              type='text'
               required
-              className="form-control"
+              className='form-control'
               value={item.location.bin}
               onChange={(e) => {
                 setItem({

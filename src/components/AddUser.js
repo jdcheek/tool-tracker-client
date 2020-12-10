@@ -10,10 +10,11 @@ const AddUser = ({ getUsers, isLoading }) => {
   const addNewUser = async (userToAdd) => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/user/add",
-        userToAdd, { withCredentials: true }
+        "https://infinite-stream-86590.herokuapp.com/user/add",
+        userToAdd,
+        { withCredentials: true }
       );
-      return res
+      return res;
     } catch (err) {
       console.log(`Add user error: ${err}`);
     }
@@ -31,36 +32,36 @@ const AddUser = ({ getUsers, isLoading }) => {
         <h2>Create New User</h2>
       </div>
       <form onSubmit={onAddSubmit}>
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
+        <div className='form-group'>
+          <label htmlFor='username'>Username</label>
           <input
-            type="text"
+            type='text'
             required
-            className="form-control"
+            className='form-control'
             value={newUser.username}
             onChange={(e) => {
               setNewUser({ ...newUser, username: e.target.value });
             }}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="description">Password</label>
+        <div className='form-group'>
+          <label htmlFor='description'>Password</label>
           <input
-            type="text"
+            type='text'
             required
-            className="form-control"
+            className='form-control'
             value={newUser.password}
             onChange={(e) => {
               setNewUser({ ...newUser, password: e.target.value });
             }}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="description">Retype Password</label>
+        <div className='form-group'>
+          <label htmlFor='description'>Retype Password</label>
           <input
-            type="text"
+            type='text'
             required
-            className="form-control"
+            className='form-control'
             value={newUser.retypedPassword}
             onChange={(e) => {
               setNewUser({ ...newUser, retypedPassword: e.target.value });
@@ -75,12 +76,12 @@ const AddUser = ({ getUsers, isLoading }) => {
           ) : newUser.password !== newUser.retypedPassword ? (
             <p>Passwords do not match</p>
           ) : (
-                  <button onClick={onAddSubmit}>Add New User</button>
-                )}
+            <button onClick={onAddSubmit}>Add New User</button>
+          )}
         </div>
       </form>
     </div>
   );
-}
+};
 
-export default AddUser
+export default AddUser;

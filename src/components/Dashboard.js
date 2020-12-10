@@ -12,9 +12,12 @@ export default function Dashboard() {
 
   const getInventory = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/inventory", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://infinite-stream-86590.herokuapp.com/inventory",
+        {
+          withCredentials: true,
+        }
+      );
       if (mountedRef.current) {
         setInventory(res.data);
         setIsLoading(false);
@@ -27,9 +30,12 @@ export default function Dashboard() {
   const getUsers = async () => {
     let list = [];
     try {
-      const res = await axios.get("http://localhost:5000/user", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://infinite-stream-86590.herokuapp.com/user",
+        {
+          withCredentials: true,
+        }
+      );
       res.data.map((user) =>
         list.push({
           username: user.username,

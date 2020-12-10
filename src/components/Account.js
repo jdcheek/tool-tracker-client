@@ -13,9 +13,12 @@ const Account = () => {
 
   const getAccountInfo = async () => {
     try {
-      const res = await axios.get(`${process.env.SERVER}/auth/status/`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `https://infinite-stream-86590.herokuapp.com/auth/status/`,
+        {
+          withCredentials: true,
+        }
+      );
       if (mountedRef.current) {
         setAccount({
           username: res.data.username,
@@ -33,7 +36,7 @@ const Account = () => {
     try {
       // eslint-disable-next-line
       const inv = await axios.post(
-        `${process.env.SERVER}/inventory/update/status/${tool.id}`,
+        `https://infinite-stream-86590.herokuapp.com/inventory/update/status/${tool.id}`,
         {
           status: {
             checked_out: false,
@@ -49,7 +52,7 @@ const Account = () => {
     try {
       // eslint-disable-next-line
       const usr = await axios.post(
-        `${process.env.SERVER}/user/tools`,
+        `https://infinite-stream-86590.herokuapp.com/user/tools`,
         {
           id: tool.id,
           tool_number: tool.tool_number,

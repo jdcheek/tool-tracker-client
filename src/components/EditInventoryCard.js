@@ -47,8 +47,9 @@ const EditInventoryCard = ({ currentItems }) => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `http://localhost:5000/inventory/update/${itemID.id}`,
-        editItem, { withCredentials: true }
+        `https://infinite-stream-86590.herokuapp.com/inventory/update/${itemID.id}`,
+        editItem,
+        { withCredentials: true }
       );
       console.log(res);
     } catch (error) {
@@ -61,42 +62,41 @@ const EditInventoryCard = ({ currentItems }) => {
   return (
     <div>
       {toggleEdit ? (
-        <div className="edit-form">
+        <div className='edit-form'>
           <form
             onSubmit={(e) => {
               onSubmit(e);
-            }}
-          >
-            <div className="form-group">
-              <label htmlFor="tool_number">Tool Number</label>
+            }}>
+            <div className='form-group'>
+              <label htmlFor='tool_number'>Tool Number</label>
               <input
-                type="text"
+                type='text'
                 required
-                className="form-control"
+                className='form-control'
                 value={editItem.tool_number}
                 onChange={(e) => {
                   setEditItem({ ...editItem, tool_number: e.target.value });
                 }}
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="description">Description</label>
+            <div className='form-group'>
+              <label htmlFor='description'>Description</label>
               <input
-                type="text"
-                className="form-control"
+                type='text'
+                className='form-control'
                 value={editItem.description}
                 onChange={(e) => {
                   setEditItem({ ...editItem, description: e.target.value });
                 }}
               />
-              <div className="form-group">
-                <label htmlFor="location">Shelf Number</label>
+              <div className='form-group'>
+                <label htmlFor='location'>Shelf Number</label>
                 <input
-                  type="number"
-                  min="1"
-                  max="30"
+                  type='number'
+                  min='1'
+                  max='30'
                   required
-                  className="form-control"
+                  className='form-control'
                   value={editItem.location.shelf}
                   onChange={(e) => {
                     setEditItem({
@@ -109,12 +109,12 @@ const EditInventoryCard = ({ currentItems }) => {
                   }}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="location">Bin Letter</label>
+              <div className='form-group'>
+                <label htmlFor='location'>Bin Letter</label>
                 <input
-                  type="text"
+                  type='text'
                   required
-                  className="form-control"
+                  className='form-control'
                   value={editItem.location.bin}
                   onChange={(e) => {
                     setEditItem({
@@ -135,14 +135,14 @@ const EditInventoryCard = ({ currentItems }) => {
             ) : editItem.location.bin.length < 1 ? (
               <p>Enter Bin Letter</p>
             ) : (
-                    <button>Submit Changes</button>
-                  )}
+              <button>Submit Changes</button>
+            )}
             <button onClick={cancelClickHandler}>Close</button>
           </form>
         </div>
       ) : (
-          <></>
-        )}
+        <></>
+      )}
       {currentItems.map((item) => (
         <div key={item._id}>
           <p>Tool Number: {item.tool_number}</p>
@@ -154,8 +154,7 @@ const EditInventoryCard = ({ currentItems }) => {
               onClick={(e) => {
                 e.preventDefault();
                 editClickHandler(item);
-              }}
-            >
+              }}>
               Edit
             </button>
           )}

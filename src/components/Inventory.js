@@ -63,7 +63,7 @@ export default function Inventory() {
     try {
       // eslint-disable-next-line
       const inv = await axios.post(
-        `http://localhost:5000/inventory/update/status/${tool._id}`,
+        `https://infinite-stream-86590.herokuapp.com/inventory/update/status/${tool._id}`,
         {
           status: {
             checked_out: true,
@@ -80,7 +80,7 @@ export default function Inventory() {
     try {
       // eslint-disable-next-line
       const usr = await axios.post(
-        `http://localhost:5000/user/tools`,
+        `https://infinite-stream-86590.herokuapp.com/user/tools`,
         {
           id: tool._id,
           tool_number: tool.tool_number,
