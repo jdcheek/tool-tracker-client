@@ -48,7 +48,7 @@ export default function LogIn() {
 
   useEffect(() => {
     if (currentUser.isLoggedIn) {
-      history.push("/inventory");
+      history.push("/tools");
     }
     return () => (mountedRef.current = false);
   }, [currentUser, history]);
