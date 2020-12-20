@@ -29,7 +29,8 @@ code {
 /* global variables */
 :root {
   --primary-blue: rgb(6, 68, 110);
-  --off-white: #d1dddc;
+  --dark-blue: #141416;
+  --light-gray: #a9a7b3;
 }
 
 .App {
@@ -39,6 +40,9 @@ code {
 
 /* Containers */
 .app-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
   margin: 0 auto;
   max-width: 900px;
   min-width: 400px;
@@ -80,6 +84,25 @@ code {
   text-align: center;
 }
 
+/* Login */
+
+.login-form {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+.login-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20%;
+}
+
+.login-container Button {
+  align-self: end;
+}
+
+/* End Login */
+
 .result-header {
   display: flex;
   justify-content: space-between;
@@ -104,8 +127,3 @@ code {
 .spinner-spin {
   margin-top: 40% !important;
 }
-/* media queries */
-
-/* for mobile - remove h1, nav buttons moved to cog for dropdown */
-
-/* for tablet - nav buttoms moved to cog for dropdown*/
