@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
 const Pagination = ({
   setItemsPerPage,
@@ -9,36 +10,38 @@ const Pagination = ({
   pages,
 }) => {
   return (
-    <div>
-      <button
+    <div className='footer'>
+      <Button
+        variant='outline-dark'
         disabled={currentPage <= 1}
         onClick={(e) => {
           e.preventDefault();
           paginate(currentPage - 1);
         }}
-        href="!#"
-      >
+        href='!#'>
         {"<"}
-      </button>
-      {currentPage} of {pages}
-      <button
+      </Button>
+      <span>
+        {currentPage} of {pages}
+      </span>
+      <Button
+        variant='outline-dark'
         disabled={currentPage === pages}
         onClick={(e) => {
           e.preventDefault();
           paginate(currentPage + 1);
         }}
-        href="!#"
-      >
+        href='!#'>
         {">"}
-      </button>
-      <label htmlFor="selection">Results Per Page</label>
+      </Button>
+      <label htmlFor='selection'>Results Per Page</label>
       <select
-        name="items-per-page"
-        onChange={(e) => setItemsPerPage(e.target.value)}
-      >
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="20">20</option>
+        defaultValue='10'
+        name='items-per-page'
+        onChange={(e) => setItemsPerPage(e.target.value)}>
+        <option value='5'>5</option>
+        <option value='10'>10</option>
+        <option value='20'>20</option>
       </select>
     </div>
   );

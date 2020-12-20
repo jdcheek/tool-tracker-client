@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import EditInventoryCard from "./EditInventoryCard";
-import AddInventory from "./AddInventory";
 import Pagination from "./Pagination";
 
 const EditInventory = ({ inventory, isLoading }) => {
@@ -38,19 +37,16 @@ const EditInventory = ({ inventory, isLoading }) => {
 
   return (
     <div>
-      <h2>Manage Inventory</h2>
-      <h4>Add New Item</h4>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
         <>
-          <AddInventory />
           <form onSubmit={(e) => e.preventDefault()}>
-            <label htmlFor='search-bar'>Search</label>
             <input
               type='text'
               value={search.query}
               onChange={searchInventory}
+              placeholder='Enter Tool Number'
             />
           </form>
           <EditInventoryCard

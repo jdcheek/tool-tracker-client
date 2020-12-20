@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { UserContext } from "./UserContext";
+import { Spinner } from "react-bootstrap";
 import axios from "axios";
 import InventoryCard from "./InventoryCard";
 import Pagination from "./Pagination";
@@ -107,12 +108,20 @@ export default function Inventory() {
   };
 
   return loading ? (
-    <p>Loading...</p>
+    <div className='load-spinner'>
+      <Spinner animation='border' role='status' className='spinner-spin'>
+        <span className='sr-only'>Loading...</span>
+      </Spinner>
+    </div>
   ) : (
-    <div>
+    <div className='page-container'>
       <form onSubmit={(e) => e.preventDefault()}>
-        <label htmlFor='search-bar'>Search</label>
-        <input type='text' value={search.query} onChange={searchInventory} />
+        <input
+          type='text'
+          value={search.query}
+          placeholder='Enter Tool Number'
+          onChange={searchInventory}
+        />
       </form>
 
       <>

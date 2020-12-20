@@ -1,11 +1,9 @@
 import React, { useEffect, useRef, useContext } from "react";
 import axios from "axios";
 import "../App.css";
-import { Link, useHistory } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCrosshairs } from "@fortawesome/free-solid-svg-icons";
-import { faCog } from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router-dom";
 import { UserContext } from "./UserContext";
+import { Nav, Navbar } from "react-bootstrap";
 
 const Navigation = (props) => {
   const mountedRef = useRef(true);
@@ -60,44 +58,33 @@ const Navigation = (props) => {
   };
 
   return (
-    <div className='Nav-bar'>
-      <FontAwesomeIcon
-        className='crosshair-icon'
-        icon={faCrosshairs}
-        size='2x'
-      />
-      <Link className='title' to='/'>
-        <h1>Tool Tracker</h1>
-      </Link>
-      <Link className='Nav-link Dash-link' to='/tools'>
-        Tools
-      </Link>
-      {currentUser.isAdmin ? (
-        <Link className='Nav-link' to='/dashboard'>
-          Dashboard
-        </Link>
-      ) : (
-        <></>
-      )}
-      {currentUser.isLoggedIn ? (
-        <Link className='Nav-link' to='/account'>
-          Account
-        </Link>
-      ) : (
-        <></>
-      )}
-
-      {currentUser.isLoggedIn ? (
-        <Link className='Nav-link' to='#' onClick={logOut}>
-          Log Out
-        </Link>
-      ) : (
-        <Link className='Nav-link' to='/login'>
-          Log In
-        </Link>
-      )}
-      <FontAwesomeIcon className='cog-icon' icon={faCog} size='2x' />
-    </div>
+    <Navbar
+      collapseOnSelect
+      expand='lg'
+      bg='dark'
+      variant='dark'
+      className='nav-bar'>
+      <Navbar.Brand className='brand' href='/tools'>
+        Tool Tracker
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+      <Navbar.Collapse id='responsive-navbar-nav'>
+        {currentUser.isLoggedIn ? (
+          <Nav className='ml-auto'>
+            <Nav.Link href='/tools'>Search Tools</Nav.Link>
+            <Nav.Link href='/account'>My Account</Nav.Link>
+            {currentUser.isAdmin ? (
+              <Nav.Link href='/dashboard'>Admin Dashboard</Nav.Link>
+            ) : null}
+            <Nav.Link onClick={logOut}>Log Out</Nav.Link>
+          </Nav>
+        ) : (
+          <Nav className='ml-auto'>
+            <Nav.Link href='/login'>Log In</Nav.Link>
+          </Nav>
+        )}
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 

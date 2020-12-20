@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { Tabs, Tab } from "react-bootstrap";
 import AddUser from "./AddUser";
 import EditUser from "./EditUser";
+import AddInventory from "./AddInventory";
 import EditInventory from "./EditInventory";
 
 export default function Dashboard() {
@@ -59,20 +61,23 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className='dashboard-grid-container'>
-      <div className='new-user-grid'>
-        <AddUser isLoading={isLoading} />
-      </div>
-      <div className='edit-user-grid'>
+    <Tabs justify defaultActiveKey='edit-inventory'>
+      <Tab eventKey='edit-inventory' title='Manage Tools'>
+        <EditInventory inventory={inventory} isLoading={isLoading} />
+      </Tab>
+      <Tab eventKey='add-inventory' title='Add New Tool'>
+        <AddInventory />
+      </Tab>
+      <Tab eventKey='edit-user' title='Manage Users'>
         <EditUser
           userList={userList}
           getUsers={getUsers}
           isLoading={isLoading}
         />
-      </div>
-      <div className='edit-inventory-grid'>
-        <EditInventory inventory={inventory} isLoading={isLoading} />
-      </div>
-    </div>
+      </Tab>
+      <Tab eventKey='add-user' title='Add New User'>
+        <AddUser isLoading={isLoading} />
+      </Tab>
+    </Tabs>
   );
 }

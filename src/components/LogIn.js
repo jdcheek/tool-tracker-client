@@ -1,6 +1,7 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "./UserContext";
+import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 
 export default function LogIn() {
@@ -54,33 +55,32 @@ export default function LogIn() {
   }, [currentUser, history]);
 
   return (
-    <div>
-      <h2>Sign In</h2>
-      <form onSubmit={onSubmit}>
-        <div className='form-group'>
-          <label htmlFor='username'>Username</label>
-          <input
-            type='text'
-            name='username'
-            required
-            className='form-control'
-            value={user.username}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className='form-group'>
-          <label htmlFor='description'>Password</label>
-          <input
-            type='text'
-            name='password'
-            required
-            className='form-control'
-            value={user.password}
-            onChange={handleInputChange}
-          />
-        </div>
-        <button type='submit'>Login</button>
-      </form>
-    </div>
+    <Form onSubmit={onSubmit}>
+      <Form.Group>
+        <Form.Control
+          type='username'
+          placeholder='Enter Username'
+          name='username'
+          required
+          value={user.username}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
+
+      <Form.Group controlId='formBasicPassword'>
+        <Form.Control
+          type='password'
+          placeholder='Enter Password'
+          name='password'
+          required
+          value={user.password}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
+
+      <Button variant='outline-dark' type='submit'>
+        Log In
+      </Button>
+    </Form>
   );
 }
