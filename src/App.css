@@ -60,9 +60,10 @@ code {
   margin: 0 auto;
 }
 
-/* .search {
-  margin: auto;
-} */
+.result-accordion {
+  margin-top: 30px;
+  margin-bottom: auto;
+}
 
 /* Navbar */
 .nav-bar {

@@ -13,7 +13,7 @@ const InventoryItem = ({
       <span className='sr-only'>Loading...</span>
     </Spinner>
   ) : (
-    <Accordion>
+    <Accordion className='result-accordion'>
       {currentItems.map((item) => (
         <Card key={item._id}>
           <Card.Header className='result-header'>
