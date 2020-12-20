@@ -1,7 +1,7 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "./UserContext";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Card } from "react-bootstrap";
 import axios from "axios";
 
 export default function LogIn() {
@@ -55,32 +55,37 @@ export default function LogIn() {
   }, [currentUser, history]);
 
   return (
-    <Form onSubmit={onSubmit}>
-      <Form.Group>
-        <Form.Control
-          type='username'
-          placeholder='Enter Username'
-          name='username'
-          required
-          value={user.username}
-          onChange={handleInputChange}
-        />
-      </Form.Group>
+    <Card className='login-container'>
+      <Card.Header as='h5'>Log In</Card.Header>
+      <Card.Body>
+        <Form onSubmit={onSubmit} className='login-form'>
+          <Form.Group>
+            <Form.Control
+              type='username'
+              placeholder='Enter Username'
+              name='username'
+              required
+              value={user.username}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
 
-      <Form.Group controlId='formBasicPassword'>
-        <Form.Control
-          type='password'
-          placeholder='Enter Password'
-          name='password'
-          required
-          value={user.password}
-          onChange={handleInputChange}
-        />
-      </Form.Group>
+          <Form.Group controlId='formBasicPassword'>
+            <Form.Control
+              type='password'
+              placeholder='Enter Password'
+              name='password'
+              required
+              value={user.password}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
 
-      <Button variant='outline-dark' type='submit'>
-        Log In
-      </Button>
-    </Form>
+          <Button variant='outline-dark' type='submit'>
+            Log In
+          </Button>
+        </Form>
+      </Card.Body>
+    </Card>
   );
 }
