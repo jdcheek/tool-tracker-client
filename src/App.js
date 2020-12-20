@@ -24,7 +24,7 @@ function App() {
       <Router>
         <UserContext.Provider value={{ currentUser, setCurrentUser }}>
           <Navigation />
-          <main>
+          <main className='app-container'>
             <Route exact path='/tools' component={Inventory} />
             <Route exact path='/login' component={LogIn} />
             <Route exact path='/account' component={Account} />
