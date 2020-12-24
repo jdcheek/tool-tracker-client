@@ -76,7 +76,7 @@ export default function Dashboard() {
         />
       </Tab>
       <Tab eventKey='add-user' title='Add New User'>
-        <AddUser isLoading={isLoading} />
+        <AddUser isLoading={isLoading} getUsers={getUsers} />
       </Tab>
     </Tabs>
   );
