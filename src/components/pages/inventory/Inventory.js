@@ -71,7 +71,6 @@ export default function Inventory({ getAccountInfo }) {
         },
         { withCredentials: true }
       );
-      return inv;
     } catch (error) {
       console.log(error);
     }

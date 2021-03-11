@@ -78,6 +78,7 @@ const Account = ({ getAccountInfo }) => {
 
   useEffect(() => {
     getUsers();
+    getAccountInfo();
     return () => {
       mountedRef.current = false;
     };
