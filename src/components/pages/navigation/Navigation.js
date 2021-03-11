@@ -18,9 +18,12 @@ const Navigation = () => {
   useEffect(() => {
     const userAuth = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/auth/status", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          `${process.env.REACT_APP_SERVER}/auth/status`,
+          {
+            withCredentials: true,
+          }
+        );
         if (mountedRef.current) {
           if (res.data) {
             setCurrentUser(res.data);
@@ -42,9 +45,12 @@ const Navigation = () => {
   const logOut = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.get("http://localhost:5000/auth/logout", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `${process.env.REACT_APP_SERVER}/auth/logout`,
+        {
+          withCredentials: true,
+        }
+      );
       setCurrentUser(userReset);
       history.push("/login");
       return res;

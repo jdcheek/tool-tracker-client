@@ -19,7 +19,7 @@ const Account = ({ getAccountInfo }) => {
   const getUsers = async () => {
     let list = [];
     try {
-      const res = await axios.get("http://localhost:5000/user", {
+      const res = await axios.get(`${process.env.REACT_APP_SERVER}/user`, {
         withCredentials: true,
       });
       res.data.map((user) =>
@@ -43,7 +43,7 @@ const Account = ({ getAccountInfo }) => {
     try {
       // eslint-disable-next-line
       const inv = await axios.post(
-        `http://localhost:5000/inventory/update/status/${tool.id}`,
+        `${process.env.REACT_APP_SERVER}/inventory/update/status/${tool.id}`,
         {
           status: {
             checked_out: false,
@@ -59,7 +59,7 @@ const Account = ({ getAccountInfo }) => {
     try {
       // eslint-disable-next-line
       const usr = await axios.post(
-        `http://localhost:5000/user/tools`,
+        `${process.env.REACT_APP_SERVER}/user/tools`,
         {
           id: tool.id,
           tool_number: tool.tool_number,

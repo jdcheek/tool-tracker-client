@@ -36,7 +36,7 @@ export default function AddInventoryModal(props) {
   const handleSubmit = async () => {
     try {
       const res = await axios.post(
-        `https://infinite-stream-86590.herokuapp.com/inventory/add`,
+        `${process.env.REACT_APP_SERVER}/inventory/add`,
         tool,
         { withCredentials: true }
       );

@@ -13,7 +13,7 @@ export default function EditInventoryModal(props) {
   const handleSubmit = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:5000/inventory/update/${tool._id}`,
+        `${process.env.REACT_APP_SERVER}/inventory/update/${tool._id}`,
         tool,
         { withCredentials: true }
       );
@@ -27,7 +27,7 @@ export default function EditInventoryModal(props) {
   const handleDelete = async () => {
     try {
       const res = await axios.delete(
-        `http://localhost:5000/inventory/delete/${tool._id}`,
+        `${process.env.REACT_APP_SERVER}/inventory/delete/${tool._id}`,
         { withCredentials: true }
       );
       getInventory();

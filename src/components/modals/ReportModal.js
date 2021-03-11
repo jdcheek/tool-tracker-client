@@ -13,7 +13,7 @@ export default function ReportModal(props) {
   const handleSubmit = async () => {
     try {
       const inv = await axios.post(
-        `http://localhost:5000/inventory/update/status/${selected._id}`,
+        `${process.env.REACT_APP_SERVER}/inventory/update/status/${selected._id}`,
         { status: { ...selected.status, ...tool.status } },
         { withCredentials: true }
       );

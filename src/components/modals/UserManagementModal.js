@@ -21,7 +21,7 @@ const AddUserModal = (props) => {
   const handleSubmit = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:5000/user/update/${selectedUser._id}`,
+        `${process.env.REACT_APP_SERVER}/user/update/${selectedUser._id}`,
         selectedUser,
         {
           withCredentials: true,
@@ -43,7 +43,7 @@ const AddUserModal = (props) => {
   const handleDelete = async () => {
     try {
       const res = await axios.delete(
-        `http://localhost:5000/user/delete/${selectedUser._id}`,
+        `${process.env.REACT_APP_SERVER}/user/delete/${selectedUser._id}`,
         { withCredentials: true }
       );
       getUsers();

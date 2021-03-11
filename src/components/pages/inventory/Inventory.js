@@ -38,7 +38,7 @@ export default function Inventory({ getAccountInfo }) {
 
   const getInventory = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/inventory", {
+      const res = await axios.get(`${process.env.REACT_APP_SERVER}/inventory`, {
         withCredentials: true,
       });
       if (mountedRef.current) {
@@ -61,7 +61,7 @@ export default function Inventory({ getAccountInfo }) {
   const checkOutItem = async (tool) => {
     try {
       const inv = await axios.post(
-        `http://localhost:5000/inventory/update/status/${tool._id}`,
+        `${process.env.REACT_APP_SERVER}/inventory/update/status/${tool._id}`,
         {
           status: {
             checked_out: true,
@@ -78,7 +78,7 @@ export default function Inventory({ getAccountInfo }) {
     try {
       // eslint-disable-next-line
       const usr = await axios.post(
-        `http://localhost:5000/user/tools`,
+        `${process.env.REACT_APP_SERVER}/user/tools`,
         {
           id: tool._id,
           tool_number: tool.tool_number,
