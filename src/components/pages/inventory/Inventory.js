@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-import { UserContext } from "./UserContext";
-import { Spinner } from "react-bootstrap";
+import { InputGroup, FormControl } from "react-bootstrap";
+import { UserContext } from "../../context/UserContext";
+import LoadingSpinner from "../../lib/LoadingSpinner";
 import axios from "axios";
 import InventoryCard from "./InventoryCard";
-import Pagination from "./Pagination";
+import Pagination from "../../lib/Pagination";
 
-export default function Inventory() {
+export default function Inventory({ getAccountInfo }) {
   const mountedRef = useRef(true);
   const { currentUser } = useContext(UserContext);
   const [inventory, setInventory] = useState([]);
@@ -19,7 +20,7 @@ export default function Inventory() {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = currentQuery.slice(indexOfFirstItem, indexOfLastItem);
+  let currentItems = currentQuery.slice(indexOfFirstItem, indexOfLastItem);
   const pages = Math.ceil(currentQuery.length / itemsPerPage);
 
   useEffect(() => {
@@ -37,12 +38,9 @@ export default function Inventory() {
 
   const getInventory = async () => {
     try {
-      const res = await axios.get(
-        "https://infinite-stream-86590.herokuapp.com/inventory",
-        {
-          withCredentials: true,
-        }
-      );
+      const res = await axios.get("http://localhost:5000/inventory", {
+        withCredentials: true,
+      });
       if (mountedRef.current) {
         setInventory(res.data);
         // Conditional to keep search active while inventory updates
@@ -62,9 +60,8 @@ export default function Inventory() {
 
   const checkOutItem = async (tool) => {
     try {
-      // eslint-disable-next-line
       const inv = await axios.post(
-        `https://infinite-stream-86590.herokuapp.com/inventory/update/status/${tool._id}`,
+        `http://localhost:5000/inventory/update/status/${tool._id}`,
         {
           status: {
             checked_out: true,
@@ -74,14 +71,14 @@ export default function Inventory() {
         },
         { withCredentials: true }
       );
-      getInventory();
+      return inv;
     } catch (error) {
       console.log(error);
     }
     try {
       // eslint-disable-next-line
       const usr = await axios.post(
-        `https://infinite-stream-86590.herokuapp.com/user/tools`,
+        `http://localhost:5000/user/tools`,
         {
           id: tool._id,
           tool_number: tool.tool_number,
@@ -93,6 +90,7 @@ export default function Inventory() {
     } catch (error) {
       console.log(error);
     }
+    getAccountInfo();
   };
 
   const searchInventory = (e) => {
@@ -108,29 +106,24 @@ export default function Inventory() {
   };
 
   return loading ? (
-    <div className='load-spinner'>
-      <Spinner animation='border' role='status' className='spinner-spin'>
-        <span className='sr-only'>Loading...</span>
-      </Spinner>
-    </div>
+    <LoadingSpinner />
   ) : (
-    <div className='page-container'>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <input
+    <div className='inventory-wrapper'>
+      <InputGroup className='mb-3'>
+        <FormControl
           type='text'
           value={search.query}
-          placeholder='Enter Tool Number'
+          placeholder='Search by tool number...'
           onChange={searchInventory}
         />
-      </form>
-
+      </InputGroup>
       <>
         <InventoryCard
+          getInventory={getInventory}
           currentUser={currentUser}
           currentItems={currentItems}
           currentQuery={currentQuery}
           checkOutItem={checkOutItem}
-          loading={loading}
         />
         <Pagination
           currentPage={currentPage}

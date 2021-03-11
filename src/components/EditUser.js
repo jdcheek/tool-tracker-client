@@ -38,7 +38,7 @@ const EditUser = ({ userList, getUsers, isLoading }) => {
   const addEditUser = async (editUser) => {
     try {
       const res = await axios.post(
-        `https://infinite-stream-86590.herokuapp.com/user/update/${editUser._id}`,
+        `http://localhost:5000/user/update/${editUser._id}`,
         {
           username: editUser.username,
           password: editUser.password,
@@ -63,7 +63,7 @@ const EditUser = ({ userList, getUsers, isLoading }) => {
         try {
           // eslint-disable-next-line
           const res = await axios.delete(
-            `https://infinite-stream-86590.herokuapp.com/user/delete/${selectedUser._id}`,
+            `http://localhost:5000/user/delete/${selectedUser._id}`,
             { withCredentials: true }
           );
 

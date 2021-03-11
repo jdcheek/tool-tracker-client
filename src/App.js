@@ -1,40 +1,76 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
-import Account from "./components/Account";
-import AddUser from "./components/AddUser";
-import Dashboard from "./components/Dashboard";
-import EditInventory from "./components/EditInventory";
-import EditUser from "./components/EditUser";
-import Inventory from "./components/Inventory";
-import { UserContext } from "./components/UserContext";
-import Navigation from "./components/Navigation";
-import LogIn from "./components/LogIn";
+import axios from "axios";
+import Account from "./components/pages/Account";
+import Inventory from "./components/pages/inventory/Inventory";
+import Landing from "./components/pages/Landing";
+import LogIn from "./components/pages/LogIn";
+import Navigation from "./components/pages/navigation/Navigation";
+import { UserContext } from "./components/context/UserContext";
 
 function App() {
+  const mountedRef = useRef(true);
+
   const [currentUser, setCurrentUser] = useState({
     isLoggedIn: false,
     isAdmin: false,
     username: null,
+    toolsCheckedOut: [],
   });
+
+  const getAccountInfo = async () => {
+    try {
+      const res = await axios.get(`http://localhost:5000/auth/status/`, {
+        withCredentials: true,
+      });
+
+      if (mountedRef.current) {
+        setCurrentUser(res.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className='App'>
-      <Router>
-        <UserContext.Provider value={{ currentUser, setCurrentUser }}>
-          <Navigation />
-          <main className='app-container'>
-            <Route exact path='/tools' component={Inventory} />
-            <Route exact path='/login' component={LogIn} />
-            <Route exact path='/account' component={Account} />
-            <Route exact path='/tools/edit' component={EditInventory} />
-            <Route exact path='/user/add' component={AddUser} />
-            <Route exact path='/user/edit' component={EditUser} />
-            <Route exact path='/dashboard' component={Dashboard} />
-          </main>
-        </UserContext.Provider>
-      </Router>
+      <div className='wrapper'>
+        <Router>
+          <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+            <Navigation />
+            <div className='app-container'>
+              {currentUser.isLoggedIn && (
+                <div className='hide'>
+                  <Account getAccountInfo={getAccountInfo} />
+                </div>
+              )}
+              <main className='page-container'>
+                <Route
+                  exact
+                  path='/'
+                  component={() =>
+                    currentUser.isLoggedIn ? <Inventory /> : <Landing />
+                  }
+                />
+                <Route
+                  exact
+                  path='/tools'
+                  component={() => (
+                    <Inventory getAccountInfo={getAccountInfo} />
+                  )}
+                />
+                <Route
+                  exact
+                  path='/dashboard'
+                  component={() => <Account getAccountInfo={getAccountInfo} />}
+                />
+                <Route exact path='/login' component={LogIn} />
+              </main>
+            </div>
+          </UserContext.Provider>
+        </Router>
+      </div>
     </div>
   );
 }

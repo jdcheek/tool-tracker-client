@@ -1,6 +1,6 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { UserContext } from "./UserContext";
+import { UserContext } from "../context/UserContext";
 import { Form, Button, Card } from "react-bootstrap";
 import axios from "axios";
 
@@ -23,21 +23,13 @@ export default function LogIn() {
       return;
     }
     try {
-      const res = await axios.post(
-        "https://infinite-stream-86590.herokuapp.com/auth/login",
-        user,
-        {
-          withCredentials: true,
-        }
-      );
+      const res = await axios.post("http://localhost:5000/auth/login", user, {
+        withCredentials: true,
+      });
       if (res.data.message) {
         return res.data.message;
       }
-      setCurrentUser({
-        isLoggedIn: true,
-        isAdmin: res.data.isAdmin,
-        username: res.data.username,
-      });
+      setCurrentUser(res.data);
     } catch (err) {
       console.log(`Authorization ${err}`);
     }
@@ -81,7 +73,7 @@ export default function LogIn() {
             />
           </Form.Group>
 
-          <Button variant='outline-dark' type='submit'>
+          <Button variant='outline-primary' type='submit'>
             Log In
           </Button>
         </Form>

@@ -59,7 +59,7 @@ const AddUser = ({ getUsers, isLoading }) => {
       </Form.Group>
 
       <Form.Group as={Col} controlId='formGridRetypePassword'>
-        <Form.Label>Password</Form.Label>
+        <Form.Label>Retype Password</Form.Label>
         <Form.Control
           onChange={handleInputChange}
           type='password'
