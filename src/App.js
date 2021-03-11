@@ -21,9 +21,12 @@ function App() {
 
   const getAccountInfo = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/auth/status/`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `${process.env.REACT_APP_SERVER}/auth/status/`,
+        {
+          withCredentials: true,
+        }
+      );
 
       if (mountedRef.current) {
         setCurrentUser(res.data);
