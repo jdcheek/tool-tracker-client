@@ -19,9 +19,13 @@ const AddUserModal = (props) => {
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/user/add", user, {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_SERVER}/user/add`,
+        user,
+        {
+          withCredentials: true,
+        }
+      );
       getUsers();
       return res;
     } catch (err) {

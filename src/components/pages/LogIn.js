@@ -23,9 +23,13 @@ export default function LogIn() {
       return;
     }
     try {
-      const res = await axios.post("http://localhost:5000/auth/login", user, {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_SERVER}/auth/login`,
+        user,
+        {
+          withCredentials: true,
+        }
+      );
       if (res.data.message) {
         return res.data.message;
       }
