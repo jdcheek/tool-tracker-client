@@ -60,6 +60,7 @@ export default function Inventory({ getAccountInfo }) {
 
   const checkOutItem = async (tool) => {
     try {
+      // eslint-disable-next-line
       const inv = await axios.post(
         `${process.env.REACT_APP_SERVER}/inventory/update/status/${tool._id}`,
         {
