@@ -22,7 +22,7 @@ function App() {
   const getAccountInfo = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_SERVER}/auth/status/`,
+        `${process.env.REACT_APP_SERVER}/auth/status`,
         {
           withCredentials: true,
         }
