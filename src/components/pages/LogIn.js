@@ -30,10 +30,10 @@ export default function LogIn() {
           withCredentials: true,
         }
       );
-      if (res.data.message) {
-        return res.data.message;
-      }
       setCurrentUser(res.data);
+      if (res.data.isLoggedIn) {
+        history.push("/tools");
+      }
     } catch (err) {
       console.log(`Authorization ${err}`);
     }
