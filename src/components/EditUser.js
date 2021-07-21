@@ -38,7 +38,7 @@ const EditUser = ({ userList, getUsers, isLoading }) => {
   const addEditUser = async (editUser) => {
     try {
       const res = await axios.post(
-        `http://localhost:5000/user/update/${editUser._id}`,
+        `${process.env.REACT_APP_SERVER}/user/update/${editUser._id}`,
         {
           username: editUser.username,
           password: editUser.password,
@@ -63,8 +63,10 @@ const EditUser = ({ userList, getUsers, isLoading }) => {
         try {
           // eslint-disable-next-line
           const res = await axios.delete(
-            `http://localhost:5000/user/delete/${selectedUser._id}`,
-            { withCredentials: true }
+            `${process.env.REACT_APP_SERVER}/user/delete/${selectedUser._id}`,
+            {
+              withCredentials: true,
+            }
           );
 
           setSelectedUser({

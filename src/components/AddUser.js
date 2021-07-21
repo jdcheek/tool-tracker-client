@@ -13,7 +13,7 @@ const AddUser = ({ getUsers, isLoading }) => {
   const addNewUser = async (userToAdd) => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/user/add",
+        `${process.env.REACT_APP_SERVER}/user/add`,
         userToAdd,
         { withCredentials: true }
       );
