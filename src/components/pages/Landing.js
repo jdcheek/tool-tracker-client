@@ -8,8 +8,8 @@ export default function Landing() {
     <Jumbotron style={{ margin: "10vh auto" }}>
       <h1 style={{ textAlign: "center" }}>Welcome to Tool Tracker</h1>
       <p style={{ maxWidth: "600px" }}>
-        An easy to use tool management app with built in user control and report
-        system.
+        An easy to use tool inventory management app with built in user control
+        and report system.
       </p>
       <p style={{ display: "flex", justifyContent: "flex-end" }}>
         <Button
