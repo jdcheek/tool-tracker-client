@@ -36,6 +36,7 @@ const EditUser = ({ userList, getUsers, isLoading }) => {
   };
 
   const addEditUser = async (editUser) => {
+    console.log(editUser);
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_SERVER}/user/update/${editUser._id}`,
@@ -50,7 +51,7 @@ const EditUser = ({ userList, getUsers, isLoading }) => {
       setInputIsDisabled(true);
       return res;
     } catch (err) {
-      console.log(`Add user error: ${err}`);
+      console.log(`Add user error: ${err}, ${editUser}`);
     }
   };
 
