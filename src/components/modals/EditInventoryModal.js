@@ -27,7 +27,7 @@ export default function EditInventoryModal(props) {
   const handleDelete = async () => {
     try {
       const res = await axios.delete(
-        `${process.env.REACT_APP_SERVER}/inventory/delete/${tool._id}`,
+        `${process.env.REACT_APP_SERVER}/inventory/${tool._id}`,
         { withCredentials: true }
       );
       getInventory();
