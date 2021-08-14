@@ -53,6 +53,7 @@ const Navigation = () => {
       );
       setCurrentUser(userReset);
       history.push("/login");
+      console.log(res);
       return res;
     } catch (error) {
       console.log(error);
