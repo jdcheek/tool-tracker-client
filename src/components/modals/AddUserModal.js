@@ -27,6 +27,7 @@ const AddUserModal = (props) => {
         }
       );
       getUsers();
+      setUser(clearForm);
       return res;
     } catch (err) {
       if (err.response.data) {
