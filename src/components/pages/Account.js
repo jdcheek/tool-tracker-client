@@ -112,8 +112,8 @@ const Account = ({ getAccountInfo }) => {
         ) : (
           <ul>
             {currentUser.toolsCheckedOut.map((tool) => (
-              <li className='tool-list-item' key={Math.random()}>
-                {tool.tool_number}: {tool.location.bin}-{tool.location.shelf}
+              <li className='tool-list-item' key={tool.tool_number}>
+                {tool.tool_number}: {tool.location.shelf}-{tool.location.bin}
                 <Button
                   className='check-in-btn'
                   variant='outline-primary'
