@@ -146,8 +146,6 @@ const Account = ({ getAccountInfo }) => {
             </Button>
           </>
         )}
-        <h5>Manage Account</h5>
-        <Button variant='outline-dark'>Change Password</Button>
         {!currentUser.isAdmin && (
           <Button onClick={() => alert("Request sent.")} variant='outline-dark'>
             Request Administrator Access
