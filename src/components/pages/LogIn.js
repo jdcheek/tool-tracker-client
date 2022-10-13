@@ -2,11 +2,13 @@ import React, { useState, useContext, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { Form, Button, Card } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 
 export default function LogIn() {
   const mountedRef = useRef(true);
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  const [ alert, setAlert ] = useState(false);
   const history = useHistory();
   const [user, setUser] = useState({
     username: "",
@@ -15,6 +17,7 @@ export default function LogIn() {
 
   const handleInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
+    setAlert(false);
   };
 
   const onSubmit = async (e) => {
@@ -36,13 +39,14 @@ export default function LogIn() {
       }
     } catch (err) {
       console.log(`Authorization ${err}`);
+      setAlert(true);
     }
     setUser({
       username: "",
       password: "",
     });
   };
-
+  
   useEffect(() => {
     if (currentUser.isLoggedIn) {
       history.push("/tools");
@@ -82,6 +86,9 @@ export default function LogIn() {
           </Button>
         </Form>
       </Card.Body>
+        {alert && <Alert variant={"danger"}>
+        Invalid login, please try again.
+        </Alert>}
     </Card>
   );
 }
