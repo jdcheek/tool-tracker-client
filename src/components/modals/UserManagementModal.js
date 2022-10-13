@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Modal, InputGroup, Form, Alert } from "react-bootstrap";
 import axios from "axios";
 
-const AddUserModal = (props) => {
+const UserManagementModal = (props) => {
   const { userList, getUsers, ...rest } = props;
   const [error, setError] = useState("");
   const clearForm = {
@@ -27,8 +27,8 @@ const AddUserModal = (props) => {
           withCredentials: true,
         }
       );
-      setSelectedUser(clearForm);
       getUsers();
+      setSelectedUser(clearForm);
       return res;
     } catch (err) {
       if (err.response.data) {
@@ -237,4 +237,4 @@ const AddUserModal = (props) => {
   );
 };
 
-export default AddUserModal;
+export default UserManagementModal;
