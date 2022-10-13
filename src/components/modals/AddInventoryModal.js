@@ -27,7 +27,7 @@ export default function AddInventoryModal(props) {
     },
   };
   const [tool, setTool] = useState(initialToolObj);
-  const [error, setError] = useState("");
+  const [alert, setAlert] = useState(false);
 
   const handleCancel = () => {
     setTool(initialToolObj);
@@ -40,13 +40,10 @@ export default function AddInventoryModal(props) {
         tool,
         { withCredentials: true }
       );
+      setTool(initialToolObj);
       return res;
     } catch (err) {
-      if (err.response.data) {
-        setError({ message: err.response.data });
-        setTimeout(() => setError(""), 3000);
-      }
-      console.log(err.response.data);
+        setAlert(true);
     }
   };
 
@@ -65,9 +62,9 @@ export default function AddInventoryModal(props) {
           Add New Tool
         </Modal.Title>
       </Modal.Header>
-      {error.message && (
-        <Alert key={error} variant='danger'>
-          {error.message}
+      {alert && (
+        <Alert variant='danger'>
+          Something went wrong!
         </Alert>
       )}
       <Modal.Body>
