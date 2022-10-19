@@ -39,7 +39,6 @@ function App() {
     }
   };
 
-  console.log(location);
   return (
     <div className='App'>
       <div className='wrapper'>
