@@ -8,9 +8,12 @@ import Landing from "./components/pages/Landing";
 import LogIn from "./components/pages/LogIn";
 import Navigation from "./components/pages/navigation/Navigation";
 import { UserContext } from "./components/context/UserContext";
+import { useLocation } from 'react-router-dom'
 
 function App() {
   const mountedRef = useRef(true);
+
+  const location = useLocation();
 
   const [currentUser, setCurrentUser] = useState({
     isLoggedIn: false,
@@ -43,7 +46,8 @@ function App() {
           <UserContext.Provider value={{ currentUser, setCurrentUser }}>
             <Navigation />
             <div className='app-container'>
-              {currentUser.isLoggedIn && (
+              {/* prevents dashboard duplicate render on mobile landscape */}  
+              {(currentUser.isLoggedIn && location.pathname !== "/dashboard") && (
                 <div className='hide'>
                   <Account getAccountInfo={getAccountInfo} />
                 </div>
