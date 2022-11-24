@@ -30,7 +30,7 @@ Inventory tracker for equipment and tools. This was built as a large inventory m
 
 ## Demo
 
-[Try it out!](https://j-tool-tracker.netlify.app)  
+<a href="https://j-tool-tracker.netlify.app" target="_blank" rel="noopener">Try it out!</a>  
 username: user  
 password: password
 
