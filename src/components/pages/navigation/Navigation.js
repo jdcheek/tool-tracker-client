@@ -29,14 +29,14 @@ const Navigation = () => {
             setCurrentUser(res.data);
           } else {
             setCurrentUser(userReset);
-            history.push("/login");
+            history.push("/");
           }
         } else {
           return;
         }
       } catch (err) {
         console.log(`Authorization ${err}`);
-        history.push("/login");
+        history.push("/");
       }
     };
     userAuth();
@@ -53,7 +53,7 @@ const Navigation = () => {
         }
       );
       setCurrentUser(userReset);
-      history.push("/login");
+      history.push("/");
       return res;
     } catch (error) {
       console.log(error);
