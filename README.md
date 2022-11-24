@@ -29,6 +29,6 @@ Inventory tracker for equipment and tools. This was built as a large inventory m
 ## Demo
 
 [Try it out!](https://j-tool-tracker.netlify.app)
-username: user
+username: user  
 password: password
 
