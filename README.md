@@ -1,3 +1,5 @@
+<base target="_blank">
+
 # Tool-Tracker
 
 Inventory tracker for equipment and tools. This was built as a large inventory management system for an automotive repair facility.
