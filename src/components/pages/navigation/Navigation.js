@@ -36,7 +36,6 @@ const Navigation = () => {
         }
       } catch (err) {
         console.log(`Authorization ${err}`);
-        history.push("/");
       }
     };
     userAuth();
