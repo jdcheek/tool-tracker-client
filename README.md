@@ -26,3 +26,9 @@ Inventory tracker for equipment and tools. This was built as a large inventory m
 - Inventory fuzzy search
 - Item check in/out system
 
+## Demo
+
+[Try it out!](https://j-tool-tracker.netlify.app)
+username: user
+password: password
+
