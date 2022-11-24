@@ -54,7 +54,6 @@ function App() {
               )}
               <main className='page-container'>
                 <Route
-                  exact
                   path='/'
                   component={() =>
                     currentUser.isLoggedIn ? <Inventory /> : <Landing />
